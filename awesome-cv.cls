@@ -68,6 +68,9 @@
 \RequirePackage{etoolbox}
 % Needed to change line spacing in specific environment
 \RequirePackage{setspace}
+% tabu environment: if you don't need to control the width of each cell, but of
+% the entire table and then distribute the space within evenly
+\RequirePackage{tabu}
 % Needed to manage fonts
 \RequirePackage[quiet]{fontspec}
 % To support LaTeX quoting style
@@ -767,6 +770,23 @@
   \end{itemize}
   \end{justify}
   \vspace{1.0mm}
+}
+
+\newenvironment{cvdoubleitems}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{4pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabu} to \textwidth{X[1,r] X[2,l] X[1,r] X[2,l]}
+}{%
+    \end{tabu}
+  \end{center}
+}
+% Define a line of cv information(marital status, date of birth, etc.)
+% Usage: \cvdoubleitem{<1st item caption>}{<1st item text>}{<2nd item caption>}{<2nd item text>}
+\newcommand*{\cvdoubleitem}[4]{%
+  \entrytitlestyle{#1} & \descriptionstyle{#2} & \entrytitlestyle{#3} & \descriptionstyle{#4} \\
 }
 
 
