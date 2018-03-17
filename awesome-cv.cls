@@ -54,7 +54,7 @@
 \RequirePackage{ragged2e}
 % Needed to configure page layout
 \RequirePackage{geometry}
-% Needed to make header & footer efficiently
+% Needed to make header & footer effeciently
 \RequirePackage{fancyhdr}
 % Needed to manage colors
 \RequirePackage{xcolor}
@@ -62,8 +62,6 @@
 \RequirePackage{ifxetex}
 % Needed to use \if-\then-\else statement
 \RequirePackage{xifthen}
-% Needed to strip chars from telephone number
-\RequirePackage{xstring}
 % Needed to use a toolbox of programming tools
 \RequirePackage{etoolbox}
 % Needed to change line spacing in specific environment
@@ -78,7 +76,7 @@
 % Needed to manage math fonts
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
-\RequirePackage{fontawesome6}
+\RequirePackage{fontawesome5}
 \RequirePackage{roboto}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
@@ -264,16 +262,7 @@
 
 % Defines writer's mobile (optional)
 % Usage: \mobile{<mobile number>}
-\newcommand*{\mobile}[1]
-{
-  \def\@mobile{#1}
-  \def\@teluri{tel:\@mobile}
-  % Strip unwanted characters
-  \StrDel{\@teluri}{ }[\@teluri]%
-  \StrDel{\@teluri}{-}[\@teluri]%
-  \StrDel{\@teluri}{(}[\@teluri]%
-  \StrDel{\@teluri}{)}[\@teluri]%
-}
+\newcommand*{\mobile}[1]{\def\@mobile{#1}}
 
 % Defines writer's email (optional)
 % Usage: \email{<email address>}
@@ -317,10 +306,6 @@
 % Usage: \twitter{<twitter handle>}
 \newcommand*{\twitter}[1]{\def\@twitter{#1}}
 
-% Defines writer's x (formerly twitter) (optional)
-% Usage: \x{<x account>}
-\newcommand*{\x}[1]{\def\@x{#1}}
-
 % Defines writer's Mastodon (optional)
 % Usage: \mastodon{<instance>}{<mastodon-nick>}
 \newcommand*{\mastodon}[2]{\def\@mastodoninstance{#1}\def\@mastodonname{#2}}
@@ -348,14 +333,6 @@
 % Defines writer's kaggle (optional)
 % Usage: \kaggle{<kaggle handle>}
 \newcommand*{\kaggle}[1]{\def\@kaggle{#1}}
-
-% Defines writer's Hackerrank (optional)
-% Usage: \hackerrank{<Hackerrank profile name>}
-\newcommand*{\hackerrank}[1]{\def\@hackerrank{#1}}
-
-% Defines writer's Telegram (optional)
-% Usage: \telegram{<Telegram username>}
-\newcommand*{\telegram}[1]{\def\@telegram{#1}}
 
 % Defines writer's google scholar profile (optional)
 % Usage: \googlescholar{<googlescholar userid>}{<googlescholar username>}
@@ -492,7 +469,7 @@
       \ifthenelse{\isundefined{\@mobile}}%
         {}%
         {%
-          \href{\@teluri}{\faMobile\acvHeaderIconSep\@mobile}%
+          \href{tel:\@mobile}{\faMobile\acvHeaderIconSep\@mobile}%
           \setbool{isstart}{false}%
         }%
       \ifthenelse{\isundefined{\@email}}%
@@ -506,19 +483,19 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           % \mbox prevents wrapping of elements%
-          \mbox{\faCakeCandles\acvHeaderIconSep\@dateofbirth}%
+          \mbox{\faBirthdayCake\acvHeaderIconSep\@dateofbirth}%
         }%
       \ifthenelse{\isundefined{\@homepage}}%
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{http://\@homepage}{\faHouseChimney\acvHeaderIconSep\@homepage}%
+          \href{http://\@homepage}{\faHome\acvHeaderIconSep\@homepage}%
         }%
       \ifthenelse{\isundefined{\@github}}%
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://github.com/\@github}{\faSquareGithub\acvHeaderIconSep\@github}%
+          \href{https://github.com/\@github}{\faGithubSquare\acvHeaderIconSep\@github}%
         }%
       \ifthenelse{\isundefined{\@gitlab}}%
         {}%
@@ -556,12 +533,6 @@
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://twitter.com/\@twitter}{\faTwitter\acvHeaderIconSep\@twitter}%
         }%
-      \ifthenelse{\isundefined{\@x}}%
-        {}%
-        {%
-          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://x.com/\@x}{\faXTwitter\acvHeaderIconSep\@x}%
-        }%
       \ifthenelse{\isundefined{\@mastodonname}}%
         {}%
         {%
@@ -590,7 +561,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.xing.com/profile/\@xing}{\faSquareXing\acvHeaderIconSep\@xing}
+          \href{https://www.xing.com/profile/\@xing}{\faXingSquare\acvHeaderIconSep\@xing}
         }%
       \ifthenelse{\isundefined{\@medium}}%
         {}%
@@ -603,18 +574,6 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://kaggle.com/\@kaggle}{\faKaggle\acvHeaderIconSep\@kaggle}%
-        }%
-      \ifthenelse{\isundefined{\@hackerrank}}%
-        {}%
-        {%
-          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.hackerrank.com/\@hackerrank}{\faHackerrank\acvHeaderIconSep\@hackerrank}%
-        }%
-      \ifthenelse{\isundefined{\@telegram}}%
-        {}%
-        {%
-          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://t.me/\@telegram}{\faTelegram\acvHeaderIconSep\@telegram}%
         }%
       \ifthenelse{\isundefined{\@googlescholarid}}%
         {}%
@@ -675,6 +634,15 @@
   \vspace{2mm}
 }
 
+% Define an environment for cventrysummary
+\newenvironment{cventrysummary}{%
+  \vspace{-4.0mm}
+  \begin{justify}
+}{%
+  \end{justify}
+  \vspace{-4.0mm}
+}
+
 % Define an environment for cventry
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
@@ -683,8 +651,8 @@
   \end{center}
 }
 % Define an entry of cv information
-% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
-\newcommand*{\cventry}[5]{%
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}{<summary>}
+\newcommand*{\cventry}[6]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
@@ -692,10 +660,11 @@
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4}}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \ifstrempty{#5}
-      {}
-      {\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}} \\}
+      \entrypositionstyle{#1} & \entrydatestyle{#4}}
+    \ifempty{#6}
+      {\\ \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
+      {\\ \multicolumn{2}{L{\textwidth}}{\paragraphstyle{#6}} \\
+       \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
   \end{tabular*}%
 }
 
@@ -738,7 +707,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}\ifempty{#2}{}{,} \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
 % Define an environment for cvskill
@@ -769,7 +738,7 @@
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{1.0mm}
+  \vspace{-4.0mm}
 }
 
 \newenvironment{cvdoubleitems}{%
