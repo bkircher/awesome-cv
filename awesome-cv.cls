@@ -69,6 +69,9 @@
 % tabu environment: if you don't need to control the width of each cell, but of
 % the entire table and then distribute the space within evenly
 \RequirePackage{tabu}
+% relsize, xspace: packages for re-positioning letters, typesetting
+\RequirePackage{relsize}
+\RequirePackage{xspace}
 % Needed to manage fonts
 \RequirePackage[quiet]{fontspec}
 % To support LaTeX quoting style
@@ -219,6 +222,14 @@
 \newcommand*{\lettertextstyle}{\fontsize{10pt}{1.4em}\bodyfontlight\upshape\color{graytext}}
 \newcommand*{\letternamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\letterenclosurestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{lighttext} #1}}
+
+
+%-------------------------------------------------------------------------------
+%                Better C++ and C++11 type setting
+%-------------------------------------------------------------------------------
+\newcommand*\Cpp{C\nolinebreak[4]\hspace{-.05em}\raisebox{.3ex}{\relsize{-2}{\textbf{++}}}\xspace}
+\newcommand*\CppEleven{C\nolinebreak[4]\hspace{-.05em}\raisebox{.3ex}{\relsize{-2}{\textbf{++}}}11\xspace}
+\newcommand*\CppSeventeen{C\nolinebreak[4]\hspace{-.05em}\raisebox{.3ex}{\relsize{-2}{\textbf{++}}}17\xspace}
 
 
 %-------------------------------------------------------------------------------
