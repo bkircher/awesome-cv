@@ -770,6 +770,40 @@
 }
 
 
+\newenvironment{cvtechitems}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{4pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabu} to \textwidth{X[1,r] X[5,l]}
+}{%
+    \end{tabu}
+  \end{center}
+}
+% Usage: \cvtechitem{<group caption>}{<text, keywords>}
+\newcommand*{\cvtechitem}[2]{%
+  \entrytitlestyle{#1} & \descriptionstyle{#2} \\
+}
+
+
+\newenvironment{cvheadwords}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{4pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabu} to \textwidth{X[1,r] X[5,l]}
+}{%
+    \end{tabu}
+  \end{center}
+}
+% Usage: \cvheadword{<text>}
+\newcommand*{\cvheadword}[1]{%
+  \entrytitlestyle{\bullet} & \descriptionstyle{#1} \\
+}
+
+
 %-------------------------------------------------------------------------------
 %                Commands for elements of Cover Letter
 %-------------------------------------------------------------------------------
