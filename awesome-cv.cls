@@ -794,19 +794,15 @@
 
 
 \newenvironment{cvquickitems}{%
-  \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
-  \begin{center}
-    \setlength\tabcolsep{4pt}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabu} to \textwidth{X[1,r] X[9,l]}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+    \setlength{\parskip}{0pt}
+    \renewcommand{\labelitemi}{\bullet}
 }{%
-    \end{tabu}
-  \end{center}
+  \end{itemize}
 }
 % Usage: \cvquickitem{<text>}
 \newcommand*{\cvquickitem}[1]{%
-  \entrytitlestyle{\bullet} & \descriptionstyle{#1} \\
+\item \descriptionstyle{#1}
 }
 
 
