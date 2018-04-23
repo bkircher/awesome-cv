@@ -776,23 +776,6 @@
 }
 
 
-\newenvironment{cvheadwords}{%
-  \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
-  \begin{center}
-    \setlength\tabcolsep{4pt}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabu} to \textwidth{X[1,r] X[5,l]}
-}{%
-    \end{tabu}
-  \end{center}
-}
-% Usage: \cvheadword{<text>}
-\newcommand*{\cvheadword}[1]{%
-  \entrytitlestyle{\bullet} & \descriptionstyle{#1} \\
-}
-
-
 \newenvironment{cvquickitems}{%
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
     \setlength{\parskip}{0pt}
