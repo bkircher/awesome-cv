@@ -10,38 +10,26 @@
   LaTeX template for your outstanding job application
 </p>
 
-<div align="center">
-  <a href="https://www.paypal.me/posquit0">
-    <img alt="Donate" src="https://img.shields.io/badge/Donate-PayPal-blue.svg" />
-  </a>
-  <a href="https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml">
-    <img alt="GitHub Actions" src="https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml/badge.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf">
-    <img alt="Example Resume" src="https://img.shields.io/badge/resume-pdf-green.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/cv.pdf">
-    <img alt="Example CV" src="https://img.shields.io/badge/cv-pdf-green.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf">
-    <img alt="Example Coverletter" src="https://img.shields.io/badge/coverletter-pdf-green.svg" />
-  </a>
-</div>
+> **Note:** This repository is a fork of
+> [posquit0/Awesome-CV](https://github.com/posquit0/Awesome-CV). Beyond
+> synchronizing with upstream it focuses on smoothing some day-to-day layout
+> pain points:
+> - Header contact blocks wrap cleanly across lines with consistent separators
+>   and optional photo columns collapse when unused.
+> - `\cventry` entries keep summaries and bullet lists separate, fixing the
+>   spacing collisions from the original template.
+> - Skills and quick-reference sections now have tabular helpers (`cvskill`,
+>   `cvtechitems`, `cvdoubleitems`, `cvquickitems`) for better alignment.
 
-<br />
+Checkout upstream if  you want to contribute or donate.
 
 ## What is Awesome CV?
 
-**Awesome CV** is LaTeX template for a **CV(Curriculum Vitae)**, **Résumé** or **Cover Letter** inspired by [Fancy CV](https://www.sharelatex.com/templates/cv-or-resume/fancy-cv). It is easy to customize your own template, especially since it is really written by a clean, semantic markup.
-
-
-## Donate
-
-Please help keep this project alive! Donations are welcome and will go towards further development of this project.
-
-    PayPal: paypal.me/posquit0
-
-*Thank you for your support!*
+**Awesome CV** is LaTeX template for a **CV(Curriculum Vitae)**, **Résumé** or
+**Cover Letter** inspired by [Fancy
+CV](https://www.sharelatex.com/templates/cv-or-resume/fancy-cv). It is easy to
+customize your own template, especially since it is really written by a clean,
+semantic markup.
 
 ## Preview
 
@@ -114,13 +102,3 @@ You are free to take my `.tex` file and modify it to create your own resume. Ple
 If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc://irc.freenode.net/posquit0) and ask away. Click [here](https://kiwiirc.com/client/irc.freenode.net/posquit0) to connect.
 
 Good luck!
-
-
-## Maintainers
-- [posquit0](https://github.com/posquit0)
-- [OJFord](https://github.com/OJFord)
-
-
-## See Also
-
-* [Awesome Identity](https://github.com/posquit0/hugo-awesome-identity) - A single-page Hugo theme to introduce yourself.
