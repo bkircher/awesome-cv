@@ -206,7 +206,7 @@
 \newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{text}\parbox{\linewidth}{\centering\sloppy #1}}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
 \newcommand*{\sectionstyleface}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries #1}}
@@ -451,7 +451,17 @@
 \newcommand{\acvHeaderAfterPositionSkip}{.4mm}
 \newcommand{\acvHeaderAfterAddressSkip}{-.5mm}
 \newcommand{\acvHeaderIconSep}{\space}
-\newcommand{\acvHeaderSocialSep}{\BeginAccSupp{ActualText={}}\quad\textbar\quad\EndAccSupp{}}
+\newcommand{\acvHeaderSocialPerLine}{2}
+\newcounter{acvHeaderSocialColumn}
+\newcommand{\acv@resetHeaderSocial}{\setcounter{acvHeaderSocialColumn}{1}}
+\newcommand{\acvHeaderSocialSep}{%
+  \ifnum\value{acvHeaderSocialColumn}=\acvHeaderSocialPerLine
+    \\
+    \setcounter{acvHeaderSocialColumn}{1}%
+  \else
+    \BeginAccSupp{ActualText={}}\thinspace\textbar\thinspace\EndAccSupp{}%
+    \stepcounter{acvHeaderSocialColumn}%
+  \fi}
 \newcommand{\acvHeaderAfterSocialSkip}{6mm}
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
@@ -487,6 +497,8 @@
 % Define a header for CV
 % Usage: \makecvheader
 \newcommand*{\makecvheader}[1][C]{%
+  \begingroup
+  \setlength{\emergencystretch}{2em}%
   \newcommand*{\drawphoto}{%
     \ifthenelse{\isundefined{\@photo}}{}{%
       \newlength{\photodim}
@@ -510,9 +522,11 @@
     \setlength{\headertextwidth}{0.76\textwidth}
     \setlength{\headerphotowidth}{0.24\textwidth}
   }%
-  \begin{minipage}[c]{\headerphotowidth}%
-    \ifthenelse{\equal{\@photoalign}{left}}{\raggedright\drawphoto}{}
-  \end{minipage}
+  \ifthenelse{\isundefined{\@photo}}{}{%
+    \begin{minipage}[c]{\headerphotowidth}%
+      \ifthenelse{\equal{\@photoalign}{left}}{\raggedright\drawphoto}{}
+    \end{minipage}%
+  }
   \begin{minipage}[c]{\headertextwidth}
     \ifthenelse{\equal{#1}{L}}{\raggedright}{\ifthenelse{\equal{#1}{R}}{\raggedleft}{\centering}}
     \headerfirstnamestyle{\@firstname}\headerlastnamestyle{{}\acvHeaderNameDelim\@lastname}%
@@ -522,6 +536,7 @@
     \headersocialstyle{%
       \newbool{isstart}%
       \setbool{isstart}{true}%
+      \acv@resetHeaderSocial%
       \ifthenelse{\isundefined{\@mobile}}%
         {}%
         {%
@@ -665,15 +680,19 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \@extrainfo%
-        }%
-    } \\[\acvHeaderAfterSocialSkip]%
+        }
+    }\par
+    \vspace{\acvHeaderAfterSocialSkip}%
     \ifthenelse{\isundefined{\@quote}}%
       {}%
       {\headerquotestyle{\@quote\\}\vspace{\acvHeaderAfterQuoteSkip}}%
   \end{minipage}%
-  \begin{minipage}[c]{\headerphotowidth}%
-    \ifthenelse{\equal{\@photoalign}{right}}{\raggedleft\drawphoto}{}
-  \end{minipage}
+  \ifthenelse{\isundefined{\@photo}}{}{%
+    \begin{minipage}[c]{\headerphotowidth}%
+      \ifthenelse{\equal{\@photoalign}{right}}{\raggedleft\drawphoto}{}
+    \end{minipage}%
+  }
+  \endgroup
 }
 
 % Define a footer for CV
@@ -715,11 +734,9 @@
 
 % Define an environment for cventrysummary
 \newenvironment{cventrysummary}{%
-  \vspace{-4.0mm}
   \begin{justify}
 }{%
   \end{justify}
-  \vspace{-4.0mm}
 }
 
 % Define an environment for cventry
@@ -793,11 +810,13 @@
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
   \vspace{-2.0mm}
+  \begin{center}
     \setlength\tabcolsep{1ex}
-    \setlength{\extrarowheight}{0pt}
-    \tabularx{\textwidth}{r>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
+    \setlength{\tabulinesep}{0pt}
+    \begin{tabu} to \textwidth{X[1,r] X[3,l]}
 }{%
-\endtabularx\par
+    \end{tabu}
+  \end{center}
 }
 
 % Define a line of cv information(skill)
@@ -808,15 +827,13 @@
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
-  \vspace{-4.0mm}
   \begin{justify}
-  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+  \begin{itemize}[leftmargin=2ex, topsep=0.6ex, itemsep=0.6ex, parsep=0pt]
     \setlength{\parskip}{0pt}
     \renewcommand{\labelitemi}{\bullet}
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{-4.0mm}
 }
 
 \newenvironment{cvdoubleitems}{%
