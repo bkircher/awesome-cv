@@ -451,7 +451,7 @@
 \newcommand{\acvHeaderAfterPositionSkip}{.4mm}
 \newcommand{\acvHeaderAfterAddressSkip}{1.3mm}
 \newcommand{\acvHeaderIconSep}{\space}
-\newcommand{\acvHeaderSocialPerLine}{2}
+\newcommand{\acvHeaderSocialPerLine}{4}
 \newcounter{acvHeaderSocialColumn}
 \newcommand{\acv@resetHeaderSocial}{\setcounter{acvHeaderSocialColumn}{1}}
 \newcommand{\acvHeaderSocialSep}{%
@@ -459,7 +459,7 @@
     \\
     \setcounter{acvHeaderSocialColumn}{1}%
   \else
-    \BeginAccSupp{ActualText={}}\thinspace\textbar\thinspace\EndAccSupp{}%
+    \BeginAccSupp{ActualText={}}\hspace{0.4em}\textbar\hspace{0.4em}\EndAccSupp{}%
     \stepcounter{acvHeaderSocialColumn}%
   \fi}
 \newcommand{\acvHeaderAfterSocialSkip}{6mm}
