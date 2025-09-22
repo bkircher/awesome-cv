@@ -401,8 +401,8 @@
 \newcommand{\acvHeaderAfterPositionSkip}{.4mm}
 \newcommand{\acvHeaderAfterAddressSkip}{1.3mm}
 \newcommand{\acvHeaderIconSep}{\space}
-\newcommand{\acvHeaderSocialSep}{\thinspace\textbar\thinspace}
-\newcommand{\acvHeaderSocialPerLine}{2}
+\newcommand{\acvHeaderSocialSep}{\hspace{0.4em}\textbar\hspace{0.4em}}
+\newcommand{\acvHeaderSocialPerLine}{4}
 \newcounter{acvHeaderSocialColumn}
 \newcommand{\acv@resetHeaderSocial}{\setcounter{acvHeaderSocialColumn}{0}}
 \newcommand{\acv@nextHeaderSocial}{%
