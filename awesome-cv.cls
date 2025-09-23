@@ -424,6 +424,8 @@
 % Others
 \newcommand{\acvSectionTopSkip}{3mm}
 \newcommand{\acvSectionContentTopSkip}{2.5mm}
+\newcommand{\acvCventrySummaryDescriptionGap}{1.9mm}
+\newcommand*{\acv@cventrysummarydescription}[1]{\par\descriptionstyle{#1}}
 
 
 %-------------------------------------------------------------------------------
@@ -654,7 +656,7 @@
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}{<summary>}
 \newcommand*{\cventry}[6]{%
-  \vspace{-2.0mm}
+  \vspace{1.1mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
@@ -664,8 +666,14 @@
       \entrypositionstyle{#1} & \entrydatestyle{#4}}
     \ifempty{#6}
       {\\ \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
-      {\\ \multicolumn{2}{L{\textwidth}}{\paragraphstyle{#6}} \\
-       \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
+      {\\ \multicolumn{2}{L{\textwidth}}{%
+         \begingroup
+           \setlength{\parskip}{\acvCventrySummaryDescriptionGap}
+           \paragraphstyle{#6}%
+           \ifempty{#5}
+             {}
+             {\acv@cventrysummarydescription{#5}}%
+         \endgroup}}
   \end{tabular*}%
 }
 
