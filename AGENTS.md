@@ -23,32 +23,12 @@ contained.
 - Use two-space indentation inside environments and keep closing braces on their
   own line, matching the style in `examples/resume.tex`.
 - Name new LaTeX sources in lower-case with hyphenated descriptors (e.g.
-  `awesome-data-scientist.tex`) and colocate assets they depend on.
+  `awesome-data-scientist.tex`) and co-locate assets they depend on.
 - Retain the comment banners
   (`%-------------------------------------------------------------------------------`)
   to separate sections and aid quick scanning.
 - Do not commit transient `.aux`, `.log`, or cache files; verify `.gitignore`
   covers any new artifacts you introduce.
-
-## Testing Guidelines
-
-- Run `make examples` before sending a PR to ensure the shipped templates
-  compile without LaTeX warnings.
-- When touching a single template, recompile it with
-  `xelatex -output-directory=examples` and review the `.log` for missing fonts
-  or references.
-- Share the resulting PDF when proposing visual or spacing changes so reviewers
-  can validate the output quickly.
-
-## Commit & Pull Request Guidelines
-
-- Follow the imperative, concise commit style already in history (e.g.
-  `Clean up examples`, `Make \cvsection single color`).
-- Reference related issues in commit or PR bodies and note which template files
-  were touched (`resume`, `cv`, `coverletter`).
-- Keep pull requests focused, include a short summary, reproduction steps, and
-  before/after previews when layout changes occur. Mention any additional TeX
-  packages contributors must install.
 
 ## Fonts & Assets
 
